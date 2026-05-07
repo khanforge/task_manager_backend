@@ -10,6 +10,10 @@ task_list = TaskViewSet.as_view({
     'post': 'create',
 })
 
+task_detail = TaskViewSet.as_view({
+    'patch': 'partial_update',
+})
+
 urlpatterns = [
     path("api/", include(router.urls)),
 
@@ -18,4 +22,9 @@ urlpatterns = [
         task_list,
         name="project-tasks"
     ),
+    path(
+    "api/<int:project_id>/tasks/<int:pk>/",
+    task_detail,
+    name="project-task-detail"
+),
 ]
